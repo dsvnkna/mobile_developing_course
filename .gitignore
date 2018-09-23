@@ -5,6 +5,9 @@
 # Files for the ART/Dalvik VM
 *.dex
 
+#JetBrains
+.idea/
+
 # Java class files
 *.class
 
