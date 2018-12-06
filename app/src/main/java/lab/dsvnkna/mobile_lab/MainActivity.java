@@ -1,5 +1,8 @@
 package lab.dsvnkna.mobile_lab;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -7,8 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Patterns;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private EditText inputPhone;
     private EditText inputPassword;
     private EditText inputPasswordReEnter;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +43,36 @@ public class MainActivity extends AppCompatActivity {
         inputPassword = findViewById(R.id.input_password);
         inputPasswordReEnter = findViewById(R.id.input_password_conf);
         errorText = findViewById(R.id.error_text);
+        Button viewListButton = findViewById(R.id.view_list_button);
         Button submitButton = findViewById(R.id.submit_button);
         setSupportActionBar(toolbar);
-
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 userValidation();
-                cleanUserData(view);
+                saveAndCleanUserData(view);
+            }
+        });
+        viewListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, UserActivity.class);
+                startActivity(intent);
             }
         });
     }
 
-    private void cleanUserData(View view) {
+    private void saveAndCleanUserData(View view) {
         if (errorsSet.isEmpty()) {
+            SharedPreferences sharedPref = getSharedPreferences(Constants.USER_DATA_KEY,
+                    Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString(Constants.FIRST_NAME_KEY, firstName);
+            editor.putString(Constants.LAST_NAME_KEY, lastName);
+            editor.putString(Constants.PHONE_KEY, phone);
+            editor.putString(Constants.EMAIL_KEY, email);
+            editor.apply();
             inputFirstName.setText("");
             inputLastName.setText("");
             inputPhone.setText("");
@@ -74,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void firstNameValidation() {
-        String firstName = inputFirstName.getText().toString();
+        firstName = inputFirstName.getText().toString();
         if (firstName.isEmpty() || firstName.length() < 3) {
             errorsSet.add(getString(R.string.short_first_name_error));
         } else if (Character.isLowerCase(firstName.charAt(0))) {
@@ -86,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void lastNameValidation() {
-        String lastName = inputLastName.getText().toString();
+        lastName = inputLastName.getText().toString();
         if (lastName.isEmpty() || lastName.length() < 4) {
             errorsSet.add(getString(R.string.short_last_name_error));
         } else if (Character.isLowerCase(lastName.charAt(0))) {
@@ -98,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void emailValidation() {
-        String email = inputEmail.getText().toString();
+        email = inputEmail.getText().toString();
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             errorsSet.add(getString(R.string.invalid_email_error));
         } else {
@@ -107,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void phoneValidation() {
-        String phone = inputPhone.getText().toString();
+        phone = inputPhone.getText().toString();
         if (phone.isEmpty() || !Patterns.PHONE.matcher(phone).matches()) {
             errorsSet.add(getString(R.string.invalid_phone_error));
         } else {
