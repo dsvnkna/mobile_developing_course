@@ -1,6 +1,5 @@
 package lab.dsvnkna.mobile_lab;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Product {
@@ -31,7 +30,7 @@ public class Product {
     private Integer limitedTimeOfferSavingsInCents;
     @SerializedName("limited_time_offer_ends_on")
     
-    private Object limitedTimeOfferEndsOn;
+    private String limitedTimeOfferEndsOn;
     @SerializedName("bonus_reward_miles")
     
     private Integer bonusRewardMiles;
@@ -220,11 +219,11 @@ public class Product {
         this.limitedTimeOfferSavingsInCents = limitedTimeOfferSavingsInCents;
     }
 
-    public Object getLimitedTimeOfferEndsOn() {
+    public String getLimitedTimeOfferEndsOn() {
         return limitedTimeOfferEndsOn;
     }
 
-    public void setLimitedTimeOfferEndsOn(Object limitedTimeOfferEndsOn) {
+    public void setLimitedTimeOfferEndsOn(String limitedTimeOfferEndsOn) {
         this.limitedTimeOfferEndsOn = limitedTimeOfferEndsOn;
     }
 

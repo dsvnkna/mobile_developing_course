@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">mobile_lab</string>
+    <string name="app_name">LCBO API</string>
     <string name="action_settings">Settings</string>
     <string name="input_first_name">First Name</string>
     <string name="input_last_name">Last Name</string>

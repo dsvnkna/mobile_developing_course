@@ -9,16 +9,11 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import lab.dsvnkna.mobile_lab.Product;
-import lab.dsvnkna.mobile_lab.ProductAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ProductAdapter adapter;
-    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,38 +21,43 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        apiCall();
+    }
 
-        /** Create handle for the RetrofitInstance interface*/
-        GetProductsData service = RetrofitInstance
+    private void apiCall() {
+        GetProductsData data = RetrofitInstance
                 .getRetrofitInstance().create(GetProductsData.class);
 
-        /** Call the method with parameter in the interface to get the notice data*/
-        Call<Product> call = service.getNoticeData();
+        Call<ProductResultList> call = data.getProduct();
 
-        /**Log the URL called*/
-        Log.wtf("URL Called", call.request().url() + "");
-
-        call.enqueue(new Callback<Product>() {
+        call.enqueue(new Callback<ProductResultList>() {
             @Override
-            public void onResponse(Call<Product> call, Response<Product> response) {
-                generateNoticeList(response.body().getAlcoholContent());
+            public void onResponse(Call<ProductResultList> call,
+                                   Response<ProductResultList> response) {
+                if (response.body() != null) {
+                    generateRecordsList(response.body().getProducts());
+                }
             }
 
             @Override
-            public void onFailure(Call<Product> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Something went wrong...Error message: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<ProductResultList> call, Throwable throwable) {
+                Toast.makeText(MainActivity.this, "Error",
+                        Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    /** Method to generate List of notice using RecyclerView with custom adapter*/
-    private void generateNoticeList(ArrayList<Product> noticeArrayList) {
-        recyclerView = findViewById(R.id.recycler_view_notice_list);
-        adapter = new ProductAdapter(noticeArrayList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+    private void generateRecordsList(ArrayList<Product> productList) {
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_product_list);
+        ProductAdapter adapter = new ProductAdapter(productList);
+        RecyclerView.LayoutManager layoutManager =
+                new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
-
 }
