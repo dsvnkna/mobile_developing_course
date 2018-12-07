@@ -20,4 +20,7 @@
         alphanumeric characters\n</string>
     <string name="not_equals_password_error">Re-entered password not equals password\n</string>
     <string name="snackbar_valid_info">Validation was successful.</string>
+    <string name="img">img</string>
+    <string name="no_con">No connection</string>
+    <string name="error">Error</string>
 </resources>

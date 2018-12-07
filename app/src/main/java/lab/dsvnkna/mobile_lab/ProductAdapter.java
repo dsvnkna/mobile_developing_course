@@ -5,9 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
@@ -30,6 +36,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.tagsText.setText(productArrayList.get(position).getTags());
         holder.producerText.setText(productArrayList.get(position).getProducerName());
         holder.servingSuggestionText.setText(productArrayList.get(position).getServingSuggestion());
+        Picasso.with(holder.itemView.getContext())
+                .load(productArrayList.get(position).getImageUrl())
+                .fit().centerCrop().into(holder.imageView);
     }
 
     @Override
@@ -39,15 +48,21 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tagsText;
-        private TextView producerText;
-        private TextView servingSuggestionText;
+        @BindView(R.id.tags_text)
+        protected TextView tagsText;
+
+        @BindView(R.id.producer_text)
+        protected TextView producerText;
+
+        @BindView(R.id.serving_suggestion_text)
+        protected TextView servingSuggestionText;
+
+        @BindView(R.id.image)
+        protected ImageView imageView;
 
         ProductViewHolder(View itemView) {
             super(itemView);
-            tagsText =  itemView.findViewById(R.id.tags_text);
-            producerText =  itemView.findViewById(R.id.producer_text);
-            servingSuggestionText =  itemView.findViewById(R.id.serving_suggestion_text);
+            ButterKnife.bind(this, itemView);
         }
     }
 }
