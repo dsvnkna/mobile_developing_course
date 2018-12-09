@@ -1,6 +1,9 @@
 package lab.dsvnkna.mobile_lab;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,12 +11,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static lab.dsvnkna.mobile_lab.MainActivity.DETAILS;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
@@ -32,13 +38,24 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductViewHolder holder,
+                                 @SuppressLint("RecyclerView") final int position) {
         holder.tagsText.setText(productArrayList.get(position).getTags());
         holder.producerText.setText(productArrayList.get(position).getProducerName());
         holder.servingSuggestionText.setText(productArrayList.get(position).getServingSuggestion());
         Picasso.with(holder.itemView.getContext())
                 .load(productArrayList.get(position).getImageUrl())
                 .fit().centerCrop().into(holder.imageView);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProductDetailsFragment detailsFragment = new ProductDetailsFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString(DETAILS, new Gson().toJson(productArrayList.get(position)));
+                detailsFragment.setArguments(bundle);
+                ((MainActivity) view.getContext()).setFragmentToContainer(detailsFragment);
+            }
+        });
     }
 
     @Override
@@ -47,6 +64,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.card_item)
+        protected CardView cardView;
 
         @BindView(R.id.tags_text)
         protected TextView tagsText;

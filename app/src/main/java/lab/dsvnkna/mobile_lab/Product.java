@@ -5,154 +5,154 @@ import com.google.gson.annotations.SerializedName;
 public class Product {
 
     @SerializedName("id")
-    
+
     private Integer id;
     @SerializedName("is_dead")
-    
+
     private Boolean isDead;
     @SerializedName("name")
-    
+
     private String name;
     @SerializedName("tags")
-    
+
     private String tags;
     @SerializedName("is_discontinued")
-    
+
     private Boolean isDiscontinued;
     @SerializedName("price_in_cents")
-    
+
     private Integer priceInCents;
     @SerializedName("regular_price_in_cents")
-    
+
     private Integer regularPriceInCents;
     @SerializedName("limited_time_offer_savings_in_cents")
-    
+
     private Integer limitedTimeOfferSavingsInCents;
     @SerializedName("limited_time_offer_ends_on")
-    
+
     private String limitedTimeOfferEndsOn;
     @SerializedName("bonus_reward_miles")
-    
+
     private Integer bonusRewardMiles;
     @SerializedName("bonus_reward_miles_ends_on")
-    
+
     private Object bonusRewardMilesEndsOn;
     @SerializedName("stock_type")
-    
+
     private String stockType;
     @SerializedName("primary_category")
-    
+
     private String primaryCategory;
     @SerializedName("secondary_category")
-    
+
     private String secondaryCategory;
     @SerializedName("origin")
-    
+
     private String origin;
     @SerializedName("package")
-    
+
     private String _package;
     @SerializedName("package_unit_type")
-    
+
     private String packageUnitType;
     @SerializedName("package_unit_volume_in_milliliters")
-    
+
     private Integer packageUnitVolumeInMilliliters;
     @SerializedName("total_package_units")
-    
+
     private Integer totalPackageUnits;
     @SerializedName("volume_in_milliliters")
-    
+
     private Integer volumeInMilliliters;
     @SerializedName("alcohol_content")
-    
+
     private Integer alcoholContent;
     @SerializedName("price_per_liter_of_alcohol_in_cents")
-    
+
     private Integer pricePerLiterOfAlcoholInCents;
     @SerializedName("price_per_liter_in_cents")
-    
+
     private Integer pricePerLiterInCents;
     @SerializedName("inventory_count")
-    
+
     private Integer inventoryCount;
     @SerializedName("inventory_volume_in_milliliters")
-    
+
     private Integer inventoryVolumeInMilliliters;
     @SerializedName("inventory_price_in_cents")
-    
+
     private Integer inventoryPriceInCents;
     @SerializedName("sugar_content")
-    
+
     private Object sugarContent;
     @SerializedName("producer_name")
-    
+
     private String producerName;
     @SerializedName("released_on")
-    
+
     private Object releasedOn;
     @SerializedName("has_value_added_promotion")
-    
+
     private Boolean hasValueAddedPromotion;
     @SerializedName("has_limited_time_offer")
-    
+
     private Boolean hasLimitedTimeOffer;
     @SerializedName("has_bonus_reward_miles")
-    
+
     private Boolean hasBonusRewardMiles;
     @SerializedName("is_seasonal")
-    
+
     private Boolean isSeasonal;
     @SerializedName("is_vqa")
-    
+
     private Boolean isVqa;
     @SerializedName("is_ocb")
-    
+
     private Boolean isOcb;
     @SerializedName("is_kosher")
-    
+
     private Boolean isKosher;
     @SerializedName("value_added_promotion_description")
-    
+
     private Object valueAddedPromotionDescription;
     @SerializedName("description")
-    
+
     private Object description;
     @SerializedName("serving_suggestion")
-    
+
     private String servingSuggestion;
     @SerializedName("tasting_note")
-    
+
     private String tastingNote;
     @SerializedName("updated_at")
-    
+
     private String updatedAt;
     @SerializedName("image_thumb_url")
-    
+
     private String imageThumbUrl;
     @SerializedName("image_url")
-    
+
     private String imageUrl;
     @SerializedName("varietal")
-    
+
     private String varietal;
     @SerializedName("style")
-    
+
     private String style;
     @SerializedName("tertiary_category")
-    
+
     private String tertiaryCategory;
     @SerializedName("sugar_in_grams_per_liter")
-    
+
     private Object sugarInGramsPerLiter;
     @SerializedName("clearance_sale_savings_in_cents")
-    
+
     private Integer clearanceSaleSavingsInCents;
     @SerializedName("has_clearance_sale")
-    
+
     private Boolean hasClearanceSale;
     @SerializedName("product_no")
-    
+
     private Integer productNo;
 
     public Integer getId() {
