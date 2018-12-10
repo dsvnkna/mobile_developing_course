@@ -1,4 +1,4 @@
-package lab.dsvnkna.mobile_lab;
+package lab.dsvnkna.mobile_lab.adapters;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -18,8 +18,13 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lab.dsvnkna.mobile_lab.ApplicationEx;
+import lab.dsvnkna.mobile_lab.activities.MainActivity;
+import lab.dsvnkna.mobile_lab.R;
+import lab.dsvnkna.mobile_lab.entities.Product;
+import lab.dsvnkna.mobile_lab.fragments.ProductDetailsFragment;
 
-import static lab.dsvnkna.mobile_lab.MainActivity.DETAILS;
+import static lab.dsvnkna.mobile_lab.activities.MainActivity.DETAILS;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
@@ -49,11 +54,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ProductDetailsFragment detailsFragment = new ProductDetailsFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString(DETAILS, new Gson().toJson(productArrayList.get(position)));
-                detailsFragment.setArguments(bundle);
-                ((MainActivity) view.getContext()).setFragmentToContainer(detailsFragment);
+                ApplicationEx.getInstance().getFragmentManager().
+                        setArguments(productArrayList.get(position));
             }
         });
     }

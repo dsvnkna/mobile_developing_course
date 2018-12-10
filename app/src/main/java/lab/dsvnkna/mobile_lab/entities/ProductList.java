@@ -1,10 +1,12 @@
-package lab.dsvnkna.mobile_lab;
+package lab.dsvnkna.mobile_lab.entities;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class ProductList {
+import lab.dsvnkna.mobile_lab.entities.Product;
+
+public class ProductList{
     @SerializedName("result")
     private ArrayList<Product> products;
 

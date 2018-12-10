@@ -1,6 +1,7 @@
-package lab.dsvnkna.mobile_lab;
+package lab.dsvnkna.mobile_lab.retrofit;
 
 
+import lab.dsvnkna.mobile_lab.entities.ProductList;
 import retrofit2.Call;
 import retrofit2.http.GET;
 

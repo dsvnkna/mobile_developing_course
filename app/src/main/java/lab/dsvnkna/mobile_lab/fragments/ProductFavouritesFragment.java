@@ -1,4 +1,4 @@
-package lab.dsvnkna.mobile_lab;
+package lab.dsvnkna.mobile_lab.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -22,8 +22,11 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lab.dsvnkna.mobile_lab.entities.Product;
+import lab.dsvnkna.mobile_lab.adapters.ProductAdapter;
+import lab.dsvnkna.mobile_lab.R;
 
-import static lab.dsvnkna.mobile_lab.MainActivity.FAVOURITES;
+import static lab.dsvnkna.mobile_lab.activities.MainActivity.FAVOURITES;
 
 public class ProductFavouritesFragment extends Fragment {
     private ArrayList<Product> mItemsList = new ArrayList<>();
